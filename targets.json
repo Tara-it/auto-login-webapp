@@ -1,0 +1,23 @@
+[
+  {
+    "name": "SportingBet Login",
+    "type": "login",
+    "url": "https://www.sportingbet.com/en/labelhost/login",
+    "commands": [
+      "click====#userId::{user_name}",
+      "input_fill2====#userId::{user_name}",
+      "input_fill2====#password input::{password}",
+      "click====#password .theme-hide-password",
+      "click====.login.w-100.btn.btn-primary"
+    ]
+  },
+  {
+    "name": "SportingBet Logout",
+    "type": "logout",
+    "url": "https://www.sportingbet.com/en",
+    "commands": [
+      "click====.user-menu",
+      "click====.logout-button"
+    ]
+  }
+]

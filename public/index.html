@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Login Scripter</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    button { padding: 8px 16px; margin: 5px; }
+    pre { background: #eee; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>🧠 Auto Login Scripter</h1>
+  <div>
+    <label for="type">Тип:</label>
+    <select id="type">
+      <option value="login">login</option>
+      <option value="logout">logout</option>
+    </select>
+    <label for="script">Скрипт:</label>
+    <select id="script"></select>
+    <button onclick="runScript()">▶ Стартирай скрипта</button>
+  </div>
+  <h2>Лог:</h2>
+  <pre id="log">Изпълнението ще се появи тук...</pre>
+
+  <script>
+    async function loadScripts() {
+      const res = await fetch('/api/scripts');
+      const data = await res.json();
+      const select = document.getElementById('script');
+      select.innerHTML = '';
+      data.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.name;
+        opt.textContent = `[${s.type}] ${s.name}`;
+        select.appendChild(opt);
+      });
+    }
+
+    async function runScript() {
+      const type = document.getElementById('type').value;
+      const name = document.getElementById('script').value;
+      const res = await fetch('/api/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, name })
+      });
+      const result = await res.json();
+      const log = document.getElementById('log');
+      log.textContent = result.log.join('\n');
+    }
+
+    loadScripts();
+  </script>
+</body>
+</html>

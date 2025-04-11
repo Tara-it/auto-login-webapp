@@ -1,0 +1,16 @@
+{
+  "name": "auto-login-scripter",
+  "version": "1.0.0",
+  "description": "Автоматичен генератор на login скриптове от уебсайтове с Playwright",
+  "main": "generateLoginScript.js",
+  "scripts": {
+    "start": "node generateLoginScript.js"
+  },
+  "author": "Ти :)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "playwright": "^1.43.0",
+    "puppeteer": "^24.6.1"
+  }
+}

@@ -1,0 +1,4 @@
+url====https://example.com
+input_fill2====#username::{user_name}
+input_fill2====#password::{password}
+click====.login-button
