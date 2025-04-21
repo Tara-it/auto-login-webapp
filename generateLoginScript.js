@@ -35,4 +35,6 @@ targets.forEach((target, i) => {
     const script = generateScript(target);
     const outPath = `output/script_${i + 1}.txt`;
     fs.mkdirSync("output", { recursive: true });
-    fs.writeFileSync(outPath, script
+    fs.writeFileSync(outPath, script); // <-- тук беше липсващата скоба!
+    console.log(`Script saved to ${outPath}`);
+});
