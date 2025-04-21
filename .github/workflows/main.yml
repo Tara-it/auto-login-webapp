@@ -1,0 +1,29 @@
+name: Generate Login Scripts
+
+on:
+  push:
+    branches:
+      - main  # или master, зависи от твоето репо
+  workflow_dispatch:  # позволява ръчно пускане
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Generate scripts
+      run: node generateLoginScript.js
+
+    - name: Upload generated scripts
+      uses: actions/upload-artifact@v4
+      with:
+        name: generated-scripts
+        path: output/
